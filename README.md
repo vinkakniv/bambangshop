@@ -110,3 +110,15 @@ Interaksi antara model akan menyebabkan peningkatan ketergantungan langsung, di 
 Saya telah menggunakan Postman dan menemukan beberapa fiturnya sangat mendukung pekerjaan saya, khususnya dalam pengujian API. Fitur _Collections_ sangat memudahkan dalam mengorganisir dan berkolaborasi dengan tim karena memungkinkan pengelompokan permintaan yang terkait, menjadikan _task_ lebih terstruktur. Fitur _Automated Tests_ mempercepat proses verifikasi apakah API berfungsi sesuai harapan tanpa intervensi manual, menghemat waktu dan upaya. Postman juga menyediakan _Documentation_ yang dihasilkan secara otomatis dari _Collection_, yang sangat membantu dalam memahami dan berkomunikasi tentang API yang sedang dikembangkan. Kesimpulannya, Postman tidak hanya meningkatkan efisiensi kerja melalui pengujian yang lebih cepat dan lebih efektif, tetapi juga memperkuat kolaborasi tim dan kelancaran pengembangan proyek.
 
 #### Reflection Publisher-3
+
+> Observer Pattern has two variations: Push model (publisher pushes data to subscribers) and Pull model (subscribers pull data from publisher). In this tutorial case, which variation of Observer Pattern that we use?
+
+Dalam tutorial ini, **Push model** dari _Observer Pattern_ digunakan, di mana _publisher_ mengirimkan data secara langsung kepada _subscriber_. Pendekatan ini memungkinkan _subscriber_ menerima data secara _real-time_ tanpa harus meminta atau menarik data tersebut sendiri.
+
+> What are the advantages and disadvantages of using the other variation of Observer Pattern for this tutorial case? (example: if you answer Q1 with Push, then imagine if we used Pull)
+
+Jika **Pull model** dari _Observer Pattern_ diterapkan, beberapa kelebihan seperti kontrol yang lebih besar bagi _subscriber_ terhadap frekuensi pembaruan data dapat terlihat. Namun, hal ini juga bisa mengakibatkan keterlambatan informasi karena pembaruan bergantung pada permintaan dari _subscriber_. Selain itu, **Pull model** juga dapat meningkatkan beban pada sisi _subscriber_ karena mereka perlu secara aktif meminta pembaruan untuk mendapatkan data terbaru.
+
+> Explain what will happen to the program if we decide to not use multi-threading in the notification process.
+
+Tidak menggunakan _multi-threading_ dalam proses notifikasi akan mengakibatkan proses berjalan secara berurutan dalam satu _thread_, yang berpotensi menjadi _bottleneck_ terutama jika ada banyak _subscriber_ atau proses pengiriman notifikasi yang memakan waktu lama. Hal ini dapat mengurangi responsivitas sistem dan meningkatkan latensi dalam penerimaan notifikasi. Kesalahan dalam pengiriman notifikasi kepada satu _subscriber_ juga berpotensi menghambat atau mengganggu pengiriman notifikasi kepada _subscriber_ lain, mempengaruhi keandalan sistem secara keseluruhan. _Multi-threading_ sangat penting untuk menjaga efisiensi dan keandalan dalam distribusi notifikasi.
