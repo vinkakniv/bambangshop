@@ -1,10 +1,11 @@
+use std::ops::Sub;
+
 use rocket::response::status::Created;
 use rocket::serde::json::Json;
 
 use bambangshop::Result;
-use crate::model::subscriber::Subscriber;
+use crate::model::subscriber::{self, Subscriber};
 use crate::service::notification::NotificationService;
-
 
 #[post("/subscribe/<product_type>", data = "<subscriber>")]
 pub fn subscribe(product_type: &str, subscriber: Json<Subscriber>) -> Result<Created<Json<Subscriber>>> {
@@ -14,11 +15,10 @@ pub fn subscribe(product_type: &str, subscriber: Json<Subscriber>) -> Result<Cre
     };
 }
 
-#[post("/unsubscribe/<product_type>/<url>")]
+#[post("/unsubscribe/<product_type>?<url>")]
 pub fn unsubscribe(product_type: &str, url: &str) -> Result<Json<Subscriber>> {
     return match NotificationService::unsubscribe(product_type, url) {
         Ok(f) => Ok(Json::from(f)),
         Err(e) => Err(e)
     };
 }
-
